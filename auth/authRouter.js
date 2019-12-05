@@ -22,7 +22,7 @@ router.post('/login', (req, res) => {
     .catch(err => {
         res.status(500).json({ message: 'Couldnt log in.',
     error: err })
-    })
+    });
 });
 
 module.exports = router;
