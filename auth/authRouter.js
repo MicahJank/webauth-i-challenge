@@ -1,27 +1,37 @@
 const router = require('express').Router();
 
 //bcrypt here
+const bcrypt = require('bcryptjs');
 
 //credential middleware here
+const authorize = require('./authRequiredMiddleware.js');
 
 const Users = require('../users/users-model.js');
 
 
-router.post('/login', (req, res) => {
-    let { username, password } = req.body;
+router.post('/register', (req, res) => {
+    let user = req.body;
 
-    Users.findBy({ username })
-    .first()
-    .then(user => {
-        if(user) {
-            res.json({ message: `Welcome ${user.username}` });
-        } else {
-            res.status(401).json({ message: 'Invalid Credentials' });
-        };
-    })
-    .catch(err => {
-        res.status(500).json({ message: 'Couldnt log in.',
-    error: err })
+    const hash = bcrypt.hashSync(user.password, 8);
+    user.password = hash;
+
+    Users.add(user)
+         .then(savedUser => {
+             res.status(201).json(savedUser);
+         })
+         .catch(err => {
+             res.status(500).json({
+                 message: 'There was an error trying to register the user',
+                 error: err
+             });
+         });
+});
+
+router.post('/login', authorize, (req, res) => {
+    let { username } = req.headers;
+
+    res.json({
+        message: `Welcome ${username}!`
     });
 });
 
