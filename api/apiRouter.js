@@ -1,11 +1,16 @@
 const router = require('express').Router();
 
 
-const authRouter = require('../auth/authRouter.js');
+const registerRouter = require('../auth/registerRouter.js');
+const loginRouter = require('../auth/loginRouter.js');
 const usersRouter = require('../users/users-router.js');
 
-// /api/auth
-router.use('/auth', authRouter);
+// /api/register
+router.use('/register', registerRouter);
+
+// /api/login
+router.use('/login', loginRouter);
+
 // /api/users
 router.use('/users', usersRouter);
 
