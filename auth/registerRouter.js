@@ -5,8 +5,8 @@ const bcrypt = require('bcryptjs');
 
 const Users = require('../users/users-model.js');
 
-
-router.post('/register', (req, res) => {
+// /api/register <-- Remember in apiRouter i have already set this routers base URL to /register
+router.post('/', (req, res) => {
     let user = req.body;
 
     const hash = bcrypt.hashSync(user.password, 8);

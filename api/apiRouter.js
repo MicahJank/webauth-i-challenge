@@ -1,6 +1,5 @@
 const router = require('express').Router();
 
-
 const registerRouter = require('../auth/registerRouter.js');
 const loginRouter = require('../auth/loginRouter.js');
 const usersRouter = require('../users/users-router.js');
