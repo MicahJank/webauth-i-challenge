@@ -46,7 +46,7 @@ const sessionOptions = {
     })
 };
 
-const server = express();
+const server = express(); 
 
 configureMiddleware(server);
 
