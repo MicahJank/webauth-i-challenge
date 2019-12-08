@@ -50,6 +50,10 @@ const server = express();
 
 configureMiddleware(server);
 
+// session(sessionOptions) creates and returns a function. Since we are using server.use here without a method or URL that means that the session object will be created
+// for every request that is made on the server.
+server.use(session(sessionOptions));
+
 server.use('/api', apiRouter);
 
 
