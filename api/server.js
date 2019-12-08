@@ -8,8 +8,9 @@ const knexSessionStore = require('connect-session-knex')(session) // <-- HOF
 
 const express = require('express');
 
-const apiRouter = require('./apiRouter.js');
 const configureMiddleware = require('./configureMiddleware.js');
+
+const apiRouter = require('./apiRouter.js');
 
 //----------------------------------------------------------------------------//
 // the options for express-session. Most of these options have to do with how

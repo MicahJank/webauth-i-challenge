@@ -9,6 +9,7 @@ const Users = require('../users/users-model.js');
 router.post('/', (req, res) => {
     let user = req.body;
 
+    
     const hash = bcrypt.hashSync(user.password, 8);
     user.password = hash;
 

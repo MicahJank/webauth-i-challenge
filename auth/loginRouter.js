@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
+const bcrypt = require('bcryptjs');
+
 const users = require('../users/users-model.js');
 
 // log in
@@ -22,7 +24,7 @@ router.post('/', (req, res) => {
                  };
              })
              .catch(err => {
-                 res.status(500).json({ message: 'There was a problem finding the user in the database', error: err });
+                 res.status(500).json({ message: 'There was a problem logging into the server', error: err });
              });
     } else {
         res.status(401).json({
