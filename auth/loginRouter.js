@@ -5,7 +5,7 @@ const users = require('../users/users-model.js');
 
 // log in
 router.post('/', validateRequestBody, (req, res) => {
-
+    const { username, password } = req.body;
     req.session.loggedin = false;
 
     users.findBy({ username })
