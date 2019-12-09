@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const authrequire = require('../auth/authRequiredMiddleware.js');
+const { checkLoggedIn } = require('../auth/authRequiredMiddleware.js');
 
 const registerRouter = require('../auth/registerRouter.js');
 const loginRouter = require('../auth/loginRouter.js');
@@ -21,9 +21,9 @@ router.use('/logout', logoutRouter);
 router.use('/users', usersRouter);
 
 // /api/restricted
-// because authrequire is here it makes it so that any sub routes i use in restrictedRouter
+// because auth is here it makes it so that any sub routes i use in restrictedRouter
 // will still need to be authorized
-router.use('/restricted', authrequire, restrictedRouter);
+router.use('/restricted', checkLoggedIn, restrictedRouter);
 
 // /api
 router.get('/', (req, res) => {

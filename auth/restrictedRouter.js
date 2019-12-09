@@ -3,7 +3,6 @@ const router = require('express').Router();
 // import restrticed routes
 const restrictedUsersRouter = require('../users/restrictedUsers-router');
 
-
 router.use('/users', restrictedUsersRouter);
 
 router.get('/', (req, res) => {
