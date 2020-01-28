@@ -6,12 +6,16 @@ const Users = require('./users-model.js');
 const { checkLoggedIn } = require('../auth/authRequiredMiddleware.js');
 
 
-router.get('/', checkLoggedIn, (req, res) => {
+router.get('/', (req, res) => {
     Users.find()
     .then(users => {
         res.json(users);
     })
     .catch(err => res.send(err));
 });
+
+router.get('/sessions', (req, res) => {
+    
+})
 
 module.exports = router;
