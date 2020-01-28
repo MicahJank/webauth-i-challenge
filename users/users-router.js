@@ -15,7 +15,14 @@ router.get('/', (req, res) => {
 });
 
 router.get('/sessions', (req, res) => {
-    
+   Users.findSessionsCount()
+        .then(sessions => {
+        console.log("TCL: res", sessions)
+            res.json({ currentSessions: sessions.length });
+        }) 
+        .catch(err => {
+            console.log({ message: 'Couldnt get the sessions', err })
+        });
 })
 
 module.exports = router;

@@ -4,7 +4,8 @@ module.exports = {
     add,
     find,
     findBy,
-    findById
+    findById,
+    findSessionsCount
 };
 
 function find() {
@@ -31,4 +32,8 @@ function findById(id) {
              .select('id', 'username')
              .where({ id })
              .first();
+}
+
+function findSessionsCount() {
+    return db('sessions')
 }

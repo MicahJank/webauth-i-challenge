@@ -32,11 +32,11 @@ const sessionOptions = {
     secret: mySecret,
     cookie: {
         maxAge: 1000 * 60 * 60, // how long should the cookie last(in minutes)? milliseconds * seconds * minutes = x minutes
-        secure: false,
+        secure: process.env.NODE_ENV === 'production' ? true : false, // secure should be true in production
         httpOnly: true
     },
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
 
     store: new knexSessionStore({
         knex: require('../database/dbConfig.js'),
