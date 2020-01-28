@@ -26,5 +26,4 @@ router.post('/', validateRequestBody, (req, res) => {
         });
 });
 
-
 module.exports = router;
